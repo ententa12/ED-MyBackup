@@ -44,6 +44,11 @@ namespace Edziennik.BLL
             _context.SaveChanges();
         }
 
+        public IEnumerable<Presence> GetPresences(Person person)
+        {
+            return _context.Presence.Where(p => p.Person == person);
+        }
+
         public void ChangePassword(Login loginWithNewPass)
         {
             GetLogin(loginWithNewPass.Login1).Password = loginWithNewPass.Password;

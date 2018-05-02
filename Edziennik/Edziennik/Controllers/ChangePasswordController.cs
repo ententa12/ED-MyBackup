@@ -25,7 +25,7 @@ namespace Edziennik.Controllers
         [HttpPost]
         public string Index(string jsonString)
         {
-            ChangePasswordWievModel changePasswordWiev = JsonConvert.DeserializeObject<ChangePasswordWievModel>(jsonString);
+            ChangePasswordViewModel changePasswordWiev = JsonConvert.DeserializeObject<ChangePasswordViewModel>(jsonString);
             var login = db.GetPerson(changePasswordWiev.Id).Login;
             if (login!=null)
             {

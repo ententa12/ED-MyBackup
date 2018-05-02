@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Edziennik.Models
 {
-    public class ChangePasswordWievModel
+    public class ChangePasswordViewModel
     {
         public int Id { get; set; }
         public string Password { get; set; }
