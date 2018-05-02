@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -20,6 +21,21 @@ namespace Edziennik.BLL
         {
             _context.Person.Add(person);
             _context.SaveChanges();
+        }
+
+        public IEnumerable<Event> GetAllEvents()
+        {
+            return _context.Event;
+        }
+
+        public IEnumerable<Event> GetEventsForStudent(Person person)
+        {
+            return GetAllEvents().Where(p=>p.Class1 == person.Class);
+        }
+
+        public IEnumerable<Event> GetEventsForTeaher(Person person)
+        {
+            return GetAllEvents().Where(p => p.Person == person);
         }
 
         public void AddLogin(Login login)

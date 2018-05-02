@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SchoolDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SchoolDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="ID_Address" />
@@ -29,9 +29,11 @@
           </Key>
           <Property Name="ID_Event" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_Class" Type="int" />
+          <Property Name="ID_Organizer" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -148,14 +150,26 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Event_Class1">
-          <End Role="Class" Type="Self.Class" Multiplicity="1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
               <PropertyRef Name="ID_Class" />
             </Principal>
             <Dependent Role="Event">
-              <PropertyRef Name="ID_Event" />
+              <PropertyRef Name="ID_Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID_Person" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="ID_Organizer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -418,6 +432,10 @@
             <End Role="Class" EntitySet="Class" />
             <End Role="Event" EntitySet="Event" />
           </AssociationSet>
+          <AssociationSet Name="FK_Event_Person" Association="Self.FK_Event_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
           <AssociationSet Name="FK_Grade_Student" Association="Self.FK_Grade_Student">
             <End Role="Person" EntitySet="Person" />
             <End Role="Grade" EntitySet="Grade" />
@@ -499,8 +517,7 @@
             <End Role="Class" EntitySet="Class" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SchoolDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -527,6 +544,7 @@
           <NavigationProperty Name="Person" Relationship="Self.FK_Student_Class" FromRole="Class" ToRole="Person" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Class" FromRole="Class" ToRole="Subject" />
           <NavigationProperty Name="Person1" Relationship="Self.FK_Tutor" FromRole="Class" ToRole="Person" />
+          <NavigationProperty Name="Event1" Relationship="SchoolDatabaseModel.FK_Event_Class11" FromRole="Class" ToRole="Event" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -538,6 +556,10 @@
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Class" Relationship="Self.FK_Event_Class1" FromRole="Event" ToRole="Class" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Class1" Relationship="SchoolDatabaseModel.FK_Event_Class11" FromRole="Event" ToRole="Class" />
+          <Property Name="ID_Organizer" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="SchoolDatabaseModel.FK_Event_Person" FromRole="Event" ToRole="Person" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -630,6 +652,7 @@
           <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Teacher" FromRole="Person" ToRole="Subject" />
           <NavigationProperty Name="Person1" Relationship="Self.Parent" FromRole="Person" ToRole="Person1" />
           <NavigationProperty Name="Person2" Relationship="Self.Parent" FromRole="Person1" ToRole="Person" />
+          <NavigationProperty Name="Event" Relationship="SchoolDatabaseModel.FK_Event_Person" FromRole="Person" ToRole="Event" />
         </EntityType>
         <EntityType Name="Presence">
           <Key>
@@ -1004,7 +1027,39 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="Person1" EntitySet="Person" />
           </AssociationSet>
+          <AssociationSet Name="FK_Event_Class11" Association="SchoolDatabaseModel.FK_Event_Class11">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Person" Association="SchoolDatabaseModel.FK_Event_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Event_Class11">
+          <End Type="SchoolDatabaseModel.Class" Role="Class" Multiplicity="0..1" />
+          <End Type="SchoolDatabaseModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ID_Class" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="ID_Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Person">
+          <End Type="SchoolDatabaseModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="SchoolDatabaseModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID_Person" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="ID_Organizer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1034,6 +1089,8 @@
           <EntitySetMapping Name="Event">
             <EntityTypeMapping TypeName="SchoolDatabaseModel.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="ID_Organizer" ColumnName="ID_Organizer" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
                 <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

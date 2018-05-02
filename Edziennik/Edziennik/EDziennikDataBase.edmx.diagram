@@ -38,6 +38,8 @@
         <AssociationConnector Association="SchoolDatabaseModel.FK_Subject_Teacher" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDatabaseModel.FK_SubjectInPlan_Subject" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDatabaseModel.Parent" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDatabaseModel.FK_Event_Class11" />
+        <AssociationConnector Association="SchoolDatabaseModel.FK_Event_Person" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

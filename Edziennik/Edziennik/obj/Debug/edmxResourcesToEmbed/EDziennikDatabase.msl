@@ -24,6 +24,8 @@
     <EntitySetMapping Name="Event">
       <EntityTypeMapping TypeName="SchoolDatabaseModel.Event">
         <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="ID_Organizer" ColumnName="ID_Organizer" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
           <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
           <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
           <ScalarProperty Name="Title" ColumnName="Title" />

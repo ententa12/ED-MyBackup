@@ -26,6 +26,7 @@ namespace Edziennik
             this.Subject = new HashSet<Subject>();
             this.Person1 = new HashSet<Person>();
             this.Person2 = new HashSet<Person>();
+            this.Event = new HashSet<Event>();
         }
     
         public int ID_Person { get; set; }
@@ -65,5 +66,7 @@ namespace Edziennik
         public virtual ICollection<Person> Person1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> Person2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Event> Event { get; set; }
     }
 }

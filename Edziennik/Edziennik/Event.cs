@@ -19,7 +19,11 @@ namespace Edziennik
         public string Title { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
+        public System.DateTime Data { get; set; }
+        public Nullable<int> ID_Organizer { get; set; }
     
         public virtual Class Class { get; set; }
+        public virtual Class Class1 { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

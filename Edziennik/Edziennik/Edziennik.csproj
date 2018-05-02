@@ -162,6 +162,7 @@
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\EventGetController.cs" />
     <Compile Include="EDziennikDataBase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,6 +197,7 @@
       <DependentUpon>EDziennikDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChangePasswordWievModel.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Note.cs">
       <DependentUpon>EDziennikDataBase.tt</DependentUpon>
@@ -276,6 +278,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\ChangePassword\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
