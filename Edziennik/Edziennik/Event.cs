@@ -21,6 +21,7 @@ namespace Edziennik
         public string Category { get; set; }
         public System.DateTime Data { get; set; }
         public Nullable<int> ID_Organizer { get; set; }
+        public Nullable<System.DateTime> EndData { get; set; }
     
         public virtual Class Class { get; set; }
         public virtual Class Class1 { get; set; }

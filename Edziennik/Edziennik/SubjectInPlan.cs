@@ -18,6 +18,7 @@ namespace Edziennik
         public int ID_Subject { get; set; }
         public string WeekDay { get; set; }
         public System.TimeSpan Hour { get; set; }
+        public string Classroom { get; set; }
     
         public virtual Subject Subject { get; set; }
     }

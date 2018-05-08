@@ -34,7 +34,8 @@ namespace Edziennik.Controllers
                     Category = p.Category,
                     Description = p.Description,
                     Title = p.Title,
-                    Data = p.Data
+                    Data = p.Data,
+                    EndDate = p.EndData
                 });
                 return JsonConvert.SerializeObject(events);
             }
@@ -46,7 +47,8 @@ namespace Edziennik.Controllers
                     Category = p.Category,
                     Description = p.Description,
                     Title = p.Title,
-                    Data = p.Data
+                    Data = p.Data,
+                    EndDate = p.EndData
                 });
                 return JsonConvert.SerializeObject(events);
             }

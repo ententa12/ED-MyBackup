@@ -24,6 +24,7 @@
     <EntitySetMapping Name="Event">
       <EntityTypeMapping TypeName="SchoolDatabaseModel.Event">
         <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="EndData" ColumnName="EndData" />
           <ScalarProperty Name="ID_Organizer" ColumnName="ID_Organizer" />
           <ScalarProperty Name="Data" ColumnName="Data" />
           <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
@@ -132,6 +133,7 @@
     <EntitySetMapping Name="SubjectInPlan">
       <EntityTypeMapping TypeName="SchoolDatabaseModel.SubjectInPlan">
         <MappingFragment StoreEntitySet="SubjectInPlan">
+          <ScalarProperty Name="Classroom" ColumnName="Classroom" />
           <ScalarProperty Name="ID_SubjectInPlan" ColumnName="ID_SubjectInPlan" />
           <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
           <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />

@@ -39,6 +39,7 @@
     <NavigationProperty Name="Class1" Relationship="SchoolDatabaseModel.FK_Event_Class11" FromRole="Event" ToRole="Class" />
     <Property Name="ID_Organizer" Type="Int32" />
     <NavigationProperty Name="Person" Relationship="SchoolDatabaseModel.FK_Event_Person" FromRole="Event" ToRole="Person" />
+    <Property Name="EndData" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Grade">
     <Key>
@@ -169,6 +170,7 @@
     <Property Name="WeekDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Hour" Type="Time" Nullable="false" Precision="7" />
     <NavigationProperty Name="Subject" Relationship="Self.FK_SubjectInPlan_Subject" FromRole="SubjectInPlan" ToRole="Subject" />
+    <Property Name="Classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

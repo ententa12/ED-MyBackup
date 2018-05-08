@@ -11,5 +11,7 @@ namespace Edziennik.Models
         public string Description { get; set; }
         public string Category { get; set; }
         public DateTime Data { get; set; }
+        public DateTime ? EndDate { get; set; }
+
     }
 }

@@ -34,6 +34,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="EndData" Type="date" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -138,6 +139,7 @@
           <Property Name="ID_Subject" Type="int" Nullable="false" />
           <Property Name="WeekDay" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Hour" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Classroom" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -560,6 +562,7 @@
           <NavigationProperty Name="Class1" Relationship="SchoolDatabaseModel.FK_Event_Class11" FromRole="Event" ToRole="Class" />
           <Property Name="ID_Organizer" Type="Int32" />
           <NavigationProperty Name="Person" Relationship="SchoolDatabaseModel.FK_Event_Person" FromRole="Event" ToRole="Person" />
+          <Property Name="EndData" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -690,6 +693,7 @@
           <Property Name="WeekDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Hour" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_SubjectInPlan_Subject" FromRole="SubjectInPlan" ToRole="Subject" />
+          <Property Name="Classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1089,6 +1093,7 @@
           <EntitySetMapping Name="Event">
             <EntityTypeMapping TypeName="SchoolDatabaseModel.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EndData" ColumnName="EndData" />
                 <ScalarProperty Name="ID_Organizer" ColumnName="ID_Organizer" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
@@ -1197,6 +1202,7 @@
           <EntitySetMapping Name="SubjectInPlan">
             <EntityTypeMapping TypeName="SchoolDatabaseModel.SubjectInPlan">
               <MappingFragment StoreEntitySet="SubjectInPlan">
+                <ScalarProperty Name="Classroom" ColumnName="Classroom" />
                 <ScalarProperty Name="ID_SubjectInPlan" ColumnName="ID_SubjectInPlan" />
                 <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
                 <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
