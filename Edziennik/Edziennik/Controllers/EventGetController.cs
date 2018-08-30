@@ -55,5 +55,36 @@ namespace Edziennik.Controllers
 
             return "";
         }
+
+        public string GetEventsForCallendary(string jsonString)
+        {
+            var Id = JsonConvert.DeserializeObject<ID>(jsonString);
+            var person = db.GetPerson(Id.Id);
+
+            if (person.Status == "Nauczyciel")
+            {
+                IEnumerable<EventForCallendaryViewModel> events = db.GetEventsForTeaher(person).Select(p =>
+                new EventForCallendaryViewModel()
+                {
+                    title = p.Title,
+                    start = p.Data,
+                    end = p.EndData
+                });
+                return JsonConvert.SerializeObject(events);
+            }
+            else if (person.Status == "Uczeń")
+            {
+                IEnumerable<EventForCallendaryViewModel> events = db.GetEventsForStudent(person).Select(p =>
+                new EventForCallendaryViewModel()
+                {
+                    title = p.Title,
+                    start = p.Data,
+                    end = p.EndData
+                });
+                return JsonConvert.SerializeObject(events);
+            }
+
+            return "";
+        }
     }
 }

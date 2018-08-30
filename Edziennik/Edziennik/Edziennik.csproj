@@ -201,6 +201,7 @@
     <Compile Include="Models\AddSubjectGetViewModel.cs" />
     <Compile Include="Models\AddSubjectPostViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\EventForCallendaryViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\GetPresenceViewModel.cs" />
     <Compile Include="Models\GradesBySubject.cs" />
